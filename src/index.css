@@ -1,13 +1,90 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+}
+.body {
+  background-color: aliceblue;
+}
+.NavBar {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+  height: 50px;
+  background-color: plum;
+  align-items: center;
+  box-shadow: 1px 1px 3px 1px gray;
+}
+.NavBar button, .Login button {
+  padding: 4px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.Loader, .Login {
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left:0;
+  right: 0;
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  text-align: center;
+}
+.center {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 800px;
+  overflow: auto;
+}
+.Chat {
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  margin-bottom: 100px;
+}
+.Message {
+  display: flex;
+  padding: 10px;
+}
+.Message img {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 4px;
+}
+.Mess1 {
+  display: flex;
+  align-items: center;
+}
+.Message p {
+  margin-top: 10px;
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid green;
+}
+.Form {
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  text-align: center;
+  max-width: 800px;
+}
+.Form input {
+  width: 60%;
+  padding: 10px;
+  outline: none;
+}
+.Form button {
+  padding: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+

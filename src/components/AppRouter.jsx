@@ -11,18 +11,15 @@ const AppRouter = () => {
 
     const {auth} = useContext(Context)
     const [user] = useAuthState(auth)
-    console.log(user)
     if (user) {        
         return <>
             <Routes>
-            <Route path='/chat' Component={Chat} />
             <Route path='*' Component={Chat} replace/>   
             </Routes>
         </>
     }
     return <>
         <Routes>
-        <Route path='/login' Component={Login} />   
         <Route path='*' Component={Login} replace/>   
         </Routes>
     </>

@@ -7,16 +7,14 @@ import {useAuthState} from 'react-firebase-hooks/auth'
 const NavBar = () => {
     const {auth} = useContext(Context)
     const [user] = useAuthState(auth)
-    return <div>
+    return <div className="NavBar">
         {user?
     <NavLink>
     <button
     onClick={()=>auth.signOut()}
     >выйти</button>
     </NavLink>
-    :<NavLink to={LOGIN_ROUTE}>
-    <button>логин</button>
-    </NavLink>
+    :null
     }    
     </div>
 }

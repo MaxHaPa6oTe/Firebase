@@ -29,16 +29,25 @@ const Chat = () => {
     }
 
     return <>
-    <div>
+    <div className='center'>
+    <div className='Chat'>
         {message.map(mess=>
-        <div>
+        <div className='Message' 
+        style={{justifyContent: user.uid === mess.uid? 'end' : ''}}>
+            <div>
+            <div className='Mess1'>
             <img src={mess.photoURL} alt='' style={{width:'50px',height:'50px',borderRadius:'50%'}}/>
-            <span>{mess.displayName}</span>
-            <p style={{backgroundColor: user.uid === mess.uid? 'green' : 'gray'}}>
+            <span><i>{mess.displayName}</i></span>
+            </div>
+            
+            <p><b>
             {mess.text}
-        </p>
+            </b></p>
+        
         {/* <span>{String(new Date(+mess.createdAt.seconds * 1000))}</span> */}
+        </div>
         </div>)}
+        <div className='Form'>
     <form onSubmit={e=>e.preventDefault()}>
         <input type='text'
         value={value}
@@ -48,6 +57,9 @@ const Chat = () => {
             отправить
         </button>
     </form>
+    </div>
+    
+    </div>
     </div>
     </>
 }

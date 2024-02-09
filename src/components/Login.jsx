@@ -9,8 +9,8 @@ const Login = () => {
         console.log(user)
     }
     const {auth} = useContext(Context)
-    return <div>
-    <button onClick={login}>войти с помощью гугле</button>
+    return <div className="Login">
+    <button onClick={login}>войти с помощью гугла</button>
     </div>
 }
 
