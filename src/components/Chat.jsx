@@ -1,18 +1,24 @@
 import { useContext, useState } from 'react'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { Context } from '..'
-import {useCollectionData} from 'react-firebase-hooks/firestore'
+import {useCollection} from 'react-firebase-hooks/firestore'
 import Loader from './Loader'
 
 const Chat = () => {
     const {auth, firestore, firebase} = useContext(Context)
     const [user] = useAuthState(auth)
     const [value, setValue] = useState('')
+    const [visible, setVisible] = useState(false)
 
-    const [message, loading] = useCollectionData(
+    const [message, loading] = useCollection(
         firestore.collection('messages').orderBy('createdAt')
     )
 
+    const deleteMessage = async (id) => {
+        let x = window.confirm("Хотите удалить свое сообщение?");
+        if (x) firestore.collection('messages').doc(id).delete()
+    }
+   
     const senddMessage = async () => {
         firestore.collection('messages').add({
             uid: user.uid,
@@ -31,25 +37,32 @@ const Chat = () => {
     return <>
     <div className='center'>
     <div className='Chat'>
-        {message.map(mess=>
-        <div className='Message' 
-        style={{justifyContent: user.uid === mess.uid? 'end' : ''}}>
-            <div>
+        {message.docs.map(mess=>
+        <div className='Message'
+        style={{justifyContent: user.uid === mess.data().uid? 'end' : ''}}>
+            <div style={{maxWidth:'300px'}}>
             <div className='Mess1'>
-            <img src={mess.photoURL} alt='' style={{width:'50px',height:'50px',borderRadius:'50%'}}/>
-            <span><i>{mess.displayName}</i></span>
+            <img src={mess.data().photoURL} alt='' style={{width:'50px',height:'50px',borderRadius:'50%'}}/>
+            <span><i>{mess.data().displayName}</i></span>
             </div>
             
+            <div className='Mess2' onMouseEnter={()=>setVisible(mess.id)} onMouseLeave={()=>setVisible(-1)}>
             <p><b>
-            {mess.text}
-            </b></p>
-        
+            {mess.data().text}
+            </b><br/>
+            </p>
+            {visible === mess.id && mess.data().uid === user.uid?<span onClick={()=>deleteMessage(mess.id)}>
+                удалить
+            </span>:<div style={{height:'14.81px'}}/>}
+            </div>
         {/* <span>{String(new Date(+mess.createdAt.seconds * 1000))}</span> */}
         </div>
         </div>)}
-        <div className='Form'>
+    
+    </div>
+    <div className='Form'>
     <form onSubmit={e=>e.preventDefault()}>
-        <input type='text'
+        <textarea rows="2" maxLength={150}
         value={value}
         onChange={e=>setValue(e.target.value)}
         />
@@ -57,8 +70,6 @@ const Chat = () => {
             отправить
         </button>
     </form>
-    </div>
-    
     </div>
     </div>
     </>

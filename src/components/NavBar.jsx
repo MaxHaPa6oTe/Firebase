@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom"
-import { LOGIN_ROUTE } from "../utils/config"
 import { useContext } from "react"
 import { Context } from ".."
 import {useAuthState} from 'react-firebase-hooks/auth'

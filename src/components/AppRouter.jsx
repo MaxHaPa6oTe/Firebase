@@ -1,6 +1,4 @@
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom"
-import { privatRoutes, publicRoutes } from "../routes"
-import { CHAT_ROUTE, LOGIN_ROUTE } from "../utils/config"
+import { Route, Routes } from "react-router-dom"
 import Login from "./Login"
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { useContext } from "react"
